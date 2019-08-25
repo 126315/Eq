@@ -1,0 +1,133 @@
+body{
+font-family: "";
+ background: #F8F8FF;
+	
+}
+.head{
+	width: 100%;
+	height: 60px;
+	background:rgb(65 65 66);
+	
+}
+
+.title{
+	width: 40%;
+	height: 60px;
+	margin-left: 25px;
+	float:left;
+	justify-content: center;
+	/*line-height:10px;*/
+	color: rgb(255 253 253);
+}
+.mess{
+	width: 57%;
+	height: 60px;
+	float:left;
+	line-height:60px;
+    color:whitesmoke;
+	text-align: right;
+	font-size: 15px;
+}
+.mess a,span{
+	color: rgb(19 160 167);
+	text-decoration: none;
+}
+.content{
+	width: 100%;
+	height: 500px;
+	background: #F8F8FF;
+	
+}
+.menu{
+	margin-left: 50px;
+	margin-top: 15px;
+	width:20%;
+	height:180px;
+	float: left;
+	border-radius: 13px;
+	background:#707070;
+	text-align: center;
+	padding-top:30px ;
+	
+}
+.menu button{
+	width: 150px;
+	border-radius: 13px;
+	background: #EAEAEA;
+}
+.section{
+	margin-top: 15px;
+	width:67%;
+	height:480px;
+	margin-right: 50px;
+	background:rgb(130 219 233);
+	float:right;
+	border-radius: 13px;
+}
+.shead{
+	width: 95%;
+	height: 40px;
+	text-align: right;
+	float:left;
+	margin-top: 10px;
+}
+.shead button{
+	background:rgb(130 219 233);
+	border-radius: 7px;
+}
+.mind{
+	background: white;
+	margin-top:50px;
+	width:100%;
+	height: 430px;	
+}
+.shead input{
+	border-radius: 5px;
+	background: rgb(119 201 213);
+}
+.add{
+	width: 92%;
+	height: 50px;
+	text-align: right;
+	line-height: 50px;
+	
+	
+}
+.add a{
+	margin:8px;
+	text-decoration: none;
+}
+
+table{
+	margin-left: 20px;
+	width: 90%;
+	height: auto;
+}
+th{
+	text-align: center;
+}
+td{
+	text-align: center;
+}
+.foot{
+   background: #F8F8FF;
+    width:100%;
+    height:48px;
+	text-align: center;
+	line-height:48px;;
+	font-size:20px;
+}
+
+.pageSelect{
+	width:100%;
+	height:50px;
+	text-align:center;
+	
+}
+.up{
+	padding-top:100px;
+	width:100%;
+	height:300px;
+	text-align:center;
+	
+}

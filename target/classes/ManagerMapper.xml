@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zcn.dao.ManagerDao">
+<resultMap id="BaseResultMap" type="com.zcn.pojo.Manager">
+    <id column="mid" property="mid"/>
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <association property="role" javaType="com.zcn.pojo.Identify">
+            <id column="id" property="id"/>
+            <result column="identifymc" property="identifymc" jdbcType="VARCHAR"/>
+     </association>
+</resultMap>
+ 
+   <select id="queryManager" resultMap="BaseResultMap">
+   select * from manager m,identify i
+where m.identify=i.id and m.name = #{name,jdbcType=VARCHAR} and m.password = #{password,jdbcType=VARCHAR};
+  </select>
+  <select id="queryName" resultMap="BaseResultMap" parameterType="java.lang.String">
+  select name from manager
+    where name = #{name,jdbcType=VARCHAR} 
+  
+  
+  </select>
+  <insert id="insertManager" parameterType="com.zcn.pojo.Manager" >
+    insert into manager (name, password,email, 
+      tel,identify)
+    values (#{name,jdbcType=VARCHAR}, "123456", #{email,jdbcType=VARCHAR}, 
+      #{tel,jdbcType=VARCHAR},#{identify})
+  </insert>
+
+<select id="queryAlljsry" resultMap="BaseResultMap">
+select 
+m.*
+from manager m,identify i
+where m.identify=i.id and i.identifymc="检修人员"
+
+
+</select>
+
+<select id="queryAllManager" resultMap="BaseResultMap">
+select * from manager m,identify i where m.identify=i.id limit #{startRow},#{pageSize}
+</select>
+<select id="getTotalCount" resultType="java.lang.Integer">
+
+select count(mid) from manager
+</select>
+<update id="updateManager" parameterType="com.zcn.pojo.Manager">
+ update manager
+ <set>
+    <if test="name!= null and name != ''">
+		name = #{name,jdbcType=VARCHAR},
+	</if>
+	<if test="password!= null and password!= ''">
+		password = #{password,jdbcType=VARCHAR},
+	</if>
+	<if test="identify!= null and identify!= ''">
+		identify = #{identify},
+	</if>
+	<if test="tel != null and tel != ''">
+		tel = #{tel,jdbcType=VARCHAR},
+	</if>
+	<if test="email != null and email != ''">
+		email = #{email,jdbcType=VARCHAR},
+	</if>
+	
+	
+ 
+ 
+ </set>
+where mid = #{mid}
+</update>
+<delete id="deleteManager" parameterType="Int">
+ delete from manager where mid=#{mid}
+</delete>
+<select id="queryManagerOne" resultMap="BaseResultMap">
+select * from manager m,identify i where m.identify=i.id and m.mid=#{mid}
+
+</select>
+<update id="InteviewPwd" parameterType="java.lang.String">
+update manager set password="123456"
+where name=#{name,jdbcType=VARCHAR}
+
+
+</update>
+<update id="changePwd" parameterType="java.lang.String">
+update manager set password=#{password,jdbcType=VARCHAR}
+where name=#{name,jdbcType=VARCHAR}
+
+
+</update>
+
+
+<select id="getmanagerList" resultMap="BaseResultMap">
+select * from manager m,identify i
+
+<where>m.identify=i.id
+<if test="queryCondition!=null">
+ and m.name like  CONCAT('%',#{queryCondition},'%') 
+</if>
+</where>
+
+</select>
+<select id="queryjsry" resultMap="BaseResultMap">
+select m.* from equipment e ,manager m where m.mid=e.jsryid and m.mid=#{mid};
+
+
+</select>
+</mapper>

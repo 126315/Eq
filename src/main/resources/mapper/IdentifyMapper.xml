@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zcn.dao.IdentifyDao">
+<!--  <resultMap id="BaseResultMap" type="com.zcn.pojo.Equipment">
+    <id column="id" property="id"/>
+    <result column="identifymc" property="identifymc" jdbcType="VARCHAR" />
+   <collection property="managerSet" ofType="com.zcn.pojo.Manager">
+            <id column="id" property="id"/>
+            <result column="name" property="name"/>
+   </collection>
+</resultMap>
+-->
+
+<select id="queryIdentify" resultType="com.zcn.pojo.Identify">
+select * from identify
+
+</select>
+</mapper>

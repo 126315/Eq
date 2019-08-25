@@ -1,0 +1,54 @@
+zcnr{
+	margin: 100px 30% auto;
+	width: 550px;
+	height: 400px;
+	opacity: 0.5;
+	background-color:white;
+	padding-top: 10px;
+	border:1px darkgrey solid;
+	border-radius: 5px;
+	font-family: "Î¢ÈíÑÅºÚ";
+	
+}
+.tit{
+	width: 100%;
+	text-align: center;
+	padding-top: 40px;
+}
+.content1{
+	width:56%;
+	text-align: right;
+	float:left;
+	height: 180px;
+}
+
+.mess1{
+	width:40%;
+	height:180px;
+	margin-top: 10px;
+	padding-left: 5px;
+	float:left;
+	text-align: left;
+	font-size: 11px;
+}
+.mess1 p{
+	padding-bottom: 12px;
+}
+.save{
+	
+	padding: 8px 30px;
+	font-size:18px;
+	font-family: "Î¢ÈíÑÅºÚ";
+	border-radius: 5px;
+	color:white;
+	background-color: rgb(69 229 229);
+}
+.reset{
+	
+	padding: 8px 30px;
+	background-color: white;
+	border-radius: 5px;
+	font-size:18px;
+	font-family: "Î¢ÈíÑÅºÚ";
+	
+}

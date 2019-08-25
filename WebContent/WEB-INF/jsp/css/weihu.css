@@ -1,0 +1,19 @@
+.question{
+	margin: 10px;
+	width:95%;
+	height: 200px;
+	border: 1px gainsboro solid;
+}
+.solution{
+	margin: 10px;
+	width:95%;
+	height: 200px;
+	border: 1px gainsboro solid;
+}
+.log{
+	width: 95%;
+	height: 40px;
+	padding: 20px;
+	text-align: right;
+}
+

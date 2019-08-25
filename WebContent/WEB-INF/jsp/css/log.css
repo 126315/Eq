@@ -1,0 +1,19 @@
+.rizhi{
+	width: 100%;
+	height: 100%;
+	padding: 30px;
+}
+textarea{
+	width: 80%;
+	height: 200px;
+}
+#save{
+	background:rgb(130 219 233);
+	width: 120px;
+	height: 40px;
+}
+#reset{
+	background: white;
+	width: 120px;
+	height: 40px;
+}

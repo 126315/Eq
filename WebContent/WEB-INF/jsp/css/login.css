@@ -1,0 +1,45 @@
+.login{
+	margin:100px auto auto 35%;
+	width:380px;
+	height: 320px;
+	text-align: center;
+	background: white;
+	font-family: "Î¢ÈíÑÅºÚ";
+	font-size:15px;
+	padding: 10px 20px;
+
+	border: 1px #1B6D85 solid;
+	border-radius: 10px;
+    
+}
+.log{
+	width: 230px;
+	height: 40px;
+	background-color: rgb(69 229 229);
+	border-radius: 8px;
+	font-family: "Î¢ÈíÑÅºÚ";
+	font-size: 20px;
+	color: white;
+}
+a{
+	text-decoration: none;
+}
+body{
+	background:rgb(69 229 229);
+}
+/*.register{
+	width: 50%;
+	height: 30px;
+	float: left;
+	
+	margin-bottom: 5px;
+	
+}
+.reset{
+	width: 50%;
+	float: left;
+	height: 30px;
+	margin-bottom: 5px;
+}
+*/
+

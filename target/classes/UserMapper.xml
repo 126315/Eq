@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zcn.dao.UserDao" >
+  <resultMap id="BaseResultMap" type="com.zcn.pojo.User" >
+    <id column="openid" property="openid" jdbcType="VARCHAR" />
+    <result column="nickName" property="nickName" jdbcType="VARCHAR" />
+    <result column="avatarUrl" property="avatarUrl" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+  </resultMap>
+   <sql id="Base_Column_List" >
+    openid, nickName, avatarUrl, province, city
+  </sql>
+   <select id="queryUserByOpenid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from userinfo
+    where openid = #{openid,jdbcType=VARCHAR}
+  </select>
+   <insert id="insertUser" parameterType="com.zcn.pojo.User" >
+    insert into userinfo (openid, nickName, avatarUrl, 
+      province, city)
+    values (#{openid,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{avatarUrl,jdbcType=VARCHAR}, 
+      #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR})
+  </insert>
+  <select id="queryAll" resultMap="BaseResultMap" parameterType="java.lang.String">
+  select 
+  <include refid="Base_Column_List" />
+    from userinfo
+  
+  </select>
+  <select id="queryNoteq" resultMap="BaseResultMap" parameterType="java.lang.String">
+  select 
+  <include refid="Base_Column_List" />
+  from userinfo where openid not in (select syzid from equipment)
+  </select>
+  </mapper>

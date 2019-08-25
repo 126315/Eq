@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zcn.dao.EquipmentDao">
+<resultMap id="BaseResultMap" type="com.zcn.pojo.Equipment">
+    <id column="id" property="id" jdbcType="VARCHAR"/>
+    <result column="ename" property="ename" jdbcType="VARCHAR" />
+    <result column="tdzxm" property="tdzxm" jdbcType="VARCHAR" />
+    <result column="lxfs" property="lxfs" jdbcType="VARCHAR" />
+    <result column="jxsj" property="jxsj" jdbcType="VARCHAR" />
+    <result column="equipmentImage" property="equipmentImage" jdbcType="VARCHAR" />
+    <result column="introduction" property="introduction" jdbcType="VARCHAR" />
+    <association property="sbzt1" javaType="com.zcn.pojo.Sbzt">
+            <id column="sid" property="sid"/>
+            <result column="ztmc" property="ztmc" jdbcType="VARCHAR"/>
+    </association>
+   <association property="user" javaType="com.zcn.pojo.User">
+            <id column="openid" property="openid" jdbcType="VARCHAR"/>
+            <result column="nickName" property="nickName" jdbcType="VARCHAR"/>
+     </association>
+    <association property="manager" javaType="com.zcn.pojo.Manager">
+            <id column="mid" property="mid"/>
+            <result column="name" property="name" jdbcType="VARCHAR"/>
+            <result column="tel" property="tel" jdbcType="VARCHAR"/>
+     </association>
+</resultMap>
+<insert id="insertEquipment" parameterType="com.zcn.pojo.Equipment">
+   insert into equipment (id, ename,equipmentImage,
+      introduction,sbzt,jsryid)
+    values (#{id,jdbcType=VARCHAR}, #{ename,jdbcType=VARCHAR}, #{equipmentImage,jdbcType=VARCHAR},#{introduction,jdbcType=VARCHAR}, 
+      3,#{jsryid})
+</insert>
+<select id="queryEquipment" resultMap="BaseResultMap">
+select e.*,m.name,m.tel,s.ztmc from 
+equipment e,manager m ,sbzt s where e.sbzt=s.sid and e.jsryid=m.mid limit #{startRow},#{pageSize};
+
+
+</select>
+<select id="searchTotalCount" resultType="java.lang.Integer">
+
+select count(id) from equipment
+</select>
+<select id="queryOne" resultMap="BaseResultMap">
+select e.*,m.*,s.* from 
+equipment e,manager m ,sbzt s where e.sbzt=s.sid and e.jsryid=m.mid and e.id=#{id};
+</select>
+
+<update id="updateEquipment" parameterType="com.zcn.pojo.Equipment">
+ update equipment
+ <set>
+    <if test="ename!= null and ename != ''">
+		ename = #{ename,jdbcType=VARCHAR},
+	</if>
+	<if test="equipmentImage != null and equipmentImage!= ''">
+		equipmentImage = #{equipmentImage,jdbcType=VARCHAR},
+	</if>
+	<if test="introduction != null and introduction != ''">
+		introduction = #{introduction,jdbcType=VARCHAR},
+	</if>
+	<if test="jsryid != null and jsryid != ''">
+		jsryid = #{jsryid},
+	</if>
+<!--  	<if test="syzid != null and syzid != ''">
+		syzid = #{syzid,jdbcType=VARCHAR},
+	</if>
+	<if test="sbzt != null and sbzt != ''">
+		sbzt = #{sbzt}
+	</if>
+-->	
+ 
+ 
+ </set>
+where id = #{id,jdbcType=VARCHAR}
+</update>
+<delete id="deleteEquipment" parameterType="java.lang.String">
+ delete from equipment where id=#{id,jdbcType=VARCHAR}
+</delete>
+<!--  <select id="queryNotUser" resultMap="BaseResultMap">
+select * from equipment e,manager m,userinfo u where e.jsryid=m.mid and e.syzid=u.openid 
+and e.syzid not in (select openid from userinfo where openid!='0'); 
+
+
+</select>
+
+<update id="updateSyz" parameterType="com.zcn.pojo.Equipment">
+update equipment 
+set syzid=#{syzid,jdbcType=VARCHAR}
+where id=#{id,jdbcType=VARCHAR}
+
+</update>
+-->
+<select id="queryMyeq" resultMap="BaseResultMap">
+select e.*,m.*,s.* from 
+(select e.*,u.* from equipment e left join userinfo u on e.tdzid=u.openid)e,manager m ,sbzt s where e.sbzt=s.sid and e.jsryid=m.mid and e.tdzid=#{tdzid,jdbcType=VARCHAR};
+
+</select>
+<update id="tjjxd" parameterType="com.zcn.pojo.Equipment">
+update equipment 
+<set>
+    <if test="tdzid!= null and tdzid != ''">
+		tdzid = #{tdzid,jdbcType=VARCHAR},
+	</if>
+	<if test="sbzt != null and sbzt != ''">
+		sbzt = #{sbzt},
+	</if>
+	
+		tdzxm = #{tdzxm,jdbcType=VARCHAR},
+	
+		lxfs = #{lxfs,jdbcType=VARCHAR}
+
+ 
+ 
+ </set>
+where id = #{id,jdbcType=VARCHAR} and ename=#{ename,jdbcType=VARCHAR} 
+</update>
+<select id="queryMyjxd" resultMap="BaseResultMap">
+select e.*,m.*,s.* from 
+(select e.*,u.* from equipment e left join userinfo u on e.tdzid=u.openid)e,manager m ,sbzt s where e.sbzt=s.sid and e.jsryid=m.mid and e.tdzid=#{tdzid,jdbcType=VARCHAR} and s.ztmc in('报废','待检修');
+</select>
+<select id="querydjxeq" resultMap="BaseResultMap">
+select e.*,m.*,s.* from 
+(select e.*,u.* from equipment e left join userinfo u on e.tdzid=u.openid)e,
+manager m ,sbzt s where e.sbzt=s.sid and e.jsryid=m.mid 
+and m.name=#{name,jdbcType=VARCHAR} and s.ztmc in ('待检修');
+</select>
+<update id="updatejxsj" parameterType="com.zcn.pojo.Equipment">
+update equipment 
+set jxsj=#{jxsj,jdbcType=VARCHAR}
+where id=#{id,jdbcType=VARCHAR}
+</update>
+<select id="geteqList" resultMap="BaseResultMap">
+select * from(select e.*,m.name,m.tel from 
+              equipment e left JOIN manager m on e.jsryid=m.mid 
+              <where> <if test="queryCondition!=null">
+                (ename like CONCAT('%',#{queryCondition},'%') or 
+               id like CONCAT('%',#{queryCondition},'%'))
+               </if>
+              </where>
+               ) a LEFT JOIN sbzt s on a.sbzt=s.sid;
+
+
+
+</select>
+</mapper>

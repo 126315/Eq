@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zcn.dao.SbztDao">
+<resultMap id="BaseResultMap" type="com.zcn.pojo.Sbzt">
+    <id column="sid" property="sid"/>
+    <result column="ztmc" property="ztmc" jdbcType="VARCHAR" />
+    </resultMap>
+<select id="queryAllSbzt" resultMap="BaseResultMap">
+select * from sbzt;
+
+</select>
+</mapper>

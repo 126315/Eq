@@ -1,0 +1,25 @@
+.left{
+	width:40%;
+	height:80%; 
+	float:left;
+	margin: 8% 35px;
+}
+.right{
+	width:40%;
+	height:80%; 
+	float:left;
+    margin: 8% 20px;
+   
+}
+#qrcode{
+	width:150px;
+	height:150px;
+    margin:5px 45px;
+}
+.btnSave{
+	width: 230px;
+	height: 40px;
+	background-color:rgb(130 219 233);
+	color:white;
+	font-size:20px;
+}
